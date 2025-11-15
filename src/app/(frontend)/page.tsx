@@ -1,59 +1,81 @@
-import { headers as getHeaders } from 'next/headers.js'
-import Image from 'next/image'
-import { getPayload } from 'payload'
 import React from 'react'
-import { fileURLToPath } from 'url'
 
-import config from '@/payload.config'
+import { getUserFromCookie } from '@/lib/auth'
 import './styles.css'
 
 export default async function HomePage() {
-  const headers = await getHeaders()
-  const payloadConfig = await config
-  const payload = await getPayload({ config: payloadConfig })
-  const { user } = await payload.auth({ headers })
+  const user = await getUserFromCookie()
 
-  const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
+  const dashboardUrl = '/dashboard'
+  const primaryCtaLabel = user ? 'Open dashboard' : 'Login'
 
   return (
-    <div className="home">
-      <div className="content">
-        <picture>
-          <source srcSet="https://raw.githubusercontent.com/payloadcms/payload/main/packages/ui/src/assets/payload-favicon.svg" />
-          <Image
-            alt="Payload Logo"
-            height={65}
-            src="https://raw.githubusercontent.com/payloadcms/payload/main/packages/ui/src/assets/payload-favicon.svg"
-            width={65}
-          />
-        </picture>
-        {!user && <h1>Welcome to your new project.</h1>}
-        {user && <h1>Welcome back, {user.email}</h1>}
-        <div className="links">
-          <a
-            className="admin"
-            href={payloadConfig.routes.admin}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Go to admin panel
-          </a>
-          <a
-            className="docs"
-            href="https://payloadcms.com/docs"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Documentation
+    <main className="landing">
+      <header className="landing__nav">
+        <div className="brand">
+          <span className="brand__mark">B&B</span>
+          <div>
+            <p className="brand__name">Board &amp; Barter</p>
+            <p className="brand__tagline">Marketplace CRM</p>
+          </div>
+        </div>
+        <div className="nav-actions">
+          {user && <p className="nav-actions__welcome">Hi, {user.email}</p>}
+          <a className="button button--primary" href={dashboardUrl}>
+            {primaryCtaLabel}
           </a>
         </div>
-      </div>
-      <div className="footer">
-        <p>Update this page by editing</p>
-        <a className="codeLink" href={fileURL}>
-          <code>app/(frontend)/page.tsx</code>
-        </a>
-      </div>
-    </div>
+      </header>
+
+      <section className="hero">
+        <div className="hero__text">
+          <p className="eyebrow">Simple trading OS</p>
+          <h1>Organize every conversation, trade, and delivery.</h1>
+          <p className="lead">
+            Board &amp; Barter gives artisan marketplaces one clean place to track deals, barter
+            requests, and upcoming shipments. No more spreadsheets, just clarity.
+          </p>
+          <div className="cta-group">
+            <a className="button button--primary" href={dashboardUrl}>
+              {primaryCtaLabel}
+            </a>
+            <a className="button button--ghost" href="mailto:hello@boardandbarter.app">
+              Talk to us
+            </a>
+          </div>
+        </div>
+        <div className="hero__card">
+          <p className="hero__card-label">Live metrics</p>
+          <div className="hero__stat">
+            <p>Open deals</p>
+            <strong>128</strong>
+          </div>
+          <div className="hero__stat">
+            <p>Fulfillment rate</p>
+            <strong>96%</strong>
+          </div>
+          <div className="hero__stat">
+            <p>Avg. turnaround</p>
+            <strong>3.5 days</strong>
+          </div>
+          <p className="hero__hint">Data syncs from the Payload admin.</p>
+        </div>
+      </section>
+
+      <section className="features">
+        <article>
+          <h3>Shared boards</h3>
+          <p>Assign every barter request to a clear owner and stay aligned without pings.</p>
+        </article>
+        <article>
+          <h3>Smart reminders</h3>
+          <p>Automatic nudges keep suppliers on track and customers in the loop.</p>
+        </article>
+        <article>
+          <h3>Audit-ready</h3>
+          <p>Every change is stored in Payload, so finance can export the truth anytime.</p>
+        </article>
+      </section>
+    </main>
   )
 }
