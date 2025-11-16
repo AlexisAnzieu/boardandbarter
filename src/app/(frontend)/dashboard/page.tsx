@@ -1,5 +1,4 @@
-import Link from 'next/link'
-
+import { LogoutButton } from '@/components/LogoutButton'
 import { getUserFromCookie } from '@/lib/auth'
 import '../styles.css'
 
@@ -15,29 +14,29 @@ export default async function DashboardPage() {
   const greeting = user?.name ? getGreeting(user.name) : getGreeting(user?.email)
 
   const highlights = [
-    { label: 'Open deals', value: '24', trend: '+4 today' },
-    { label: 'Awaiting pickup', value: '11', trend: '2 delayed' },
-    { label: 'New barter requests', value: '7', trend: '3 VIP' },
+    { label: 'Active trades', value: '18', trend: '4 awaiting confirmation' },
+    { label: 'Ready to ship', value: '9', trend: 'Kingdom Death next' },
+    { label: 'Watchlist matches', value: '5', trend: '2 bilingual notes' },
   ]
 
   const timeline = [
-    { title: 'Incoming: Ceramic set', meta: 'Yasmin (Harbor Co.)', time: '08:32' },
-    { title: 'Outbound: Linen run', meta: 'Delaine Atelier', time: '09:10' },
-    { title: 'Invoice approved', meta: 'La Brise Collective', time: '10:05' },
+    { title: 'Sleeve check: Brass Birmingham', meta: 'Melanie • Club Meeple', time: '08:12' },
+    { title: 'Swap confirmed: Ark Nova FR/EN', meta: 'Axel <-> Jo', time: '09:05' },
+    { title: 'Courier booked: Frosthaven insert', meta: 'La Taniere', time: '10:44' },
   ]
 
   return (
     <main className="dashboard">
       <header className="dashboard__header">
         <div>
-          <p className="eyebrow">Live overview</p>
+          <p className="eyebrow">BoardGameGeek palette</p>
           <h1>Morning, {greeting}</h1>
-          <p className="lead">Quick view of today&apos;s trading pulse.</p>
+          <p className="lead">
+            Here&apos;s what&apos;s happening across your shelves, swaps, and club drops.
+          </p>
         </div>
-        <div className="dashboard__actions">
-          <Link className="button button--ghost" href="mailto:hello@boardandbarter.app">
-            Need help?
-          </Link>
+        <div className="dashboard__header-actions">
+          <LogoutButton label="Log out" />
         </div>
       </header>
 
@@ -53,7 +52,7 @@ export default async function DashboardPage() {
 
       <section className="dashboard__panel">
         <div className="dashboard__panel-header">
-          <h2>Logbook</h2>
+          <h2>Collector logbook</h2>
           <p>
             Last synced{' '}
             {new Intl.DateTimeFormat('en', { hour: '2-digit', minute: '2-digit' }).format(

@@ -2,13 +2,9 @@ import React from 'react'
 
 import { getUserFromCookie } from '@/lib/auth'
 import './styles.css'
+import Link from 'next/link'
 
 export default async function HomePage() {
-  const user = await getUserFromCookie()
-
-  const dashboardUrl = '/dashboard'
-  const primaryCtaLabel = user ? 'Open dashboard' : 'Login'
-
   return (
     <main className="landing">
       <header className="landing__nav">
@@ -16,64 +12,55 @@ export default async function HomePage() {
           <span className="brand__mark">B&B</span>
           <div>
             <p className="brand__name">Board &amp; Barter</p>
-            <p className="brand__tagline">Marketplace CRM</p>
+            <p className="brand__tagline">Collection &amp; barter HQ</p>
           </div>
         </div>
         <div className="nav-actions">
-          {user && <p className="nav-actions__welcome">Hi, {user.email}</p>}
-          <a className="button button--primary" href={dashboardUrl}>
-            {primaryCtaLabel}
-          </a>
+          <Link className="button button--primary" href="/dashboard">
+            Open dashboard
+          </Link>
         </div>
       </header>
 
       <section className="hero">
         <div className="hero__text">
-          <p className="eyebrow">Simple trading OS</p>
-          <h1>Organize every conversation, trade, and delivery.</h1>
+          <p className="eyebrow">Tabletop trading OS</p>
+          <h1>Curate every game loan, trade, and wish list drop.</h1>
           <p className="lead">
-            Board &amp; Barter gives artisan marketplaces one clean place to track deals, barter
-            requests, and upcoming shipments. No more spreadsheets, just clarity.
+            Inspired by the BoardGameGeek colors you know, Board &amp; Barter keeps your shelves,
+            swap queues, and delivery routes perfectly in sync for clubs, cafés, and collectors.
           </p>
-          <div className="cta-group">
-            <a className="button button--primary" href={dashboardUrl}>
-              {primaryCtaLabel}
-            </a>
-            <a className="button button--ghost" href="mailto:hello@boardandbarter.app">
-              Talk to us
-            </a>
-          </div>
         </div>
         <div className="hero__card">
-          <p className="hero__card-label">Live metrics</p>
+          <p className="hero__card-label">Guild signals</p>
           <div className="hero__stat">
-            <p>Open deals</p>
-            <strong>128</strong>
+            <p>Games catalogued</p>
+            <strong>642</strong>
           </div>
           <div className="hero__stat">
-            <p>Fulfillment rate</p>
-            <strong>96%</strong>
+            <p>Trades cleared</p>
+            <strong>92%</strong>
           </div>
           <div className="hero__stat">
             <p>Avg. turnaround</p>
-            <strong>3.5 days</strong>
+            <strong>2.1 days</strong>
           </div>
-          <p className="hero__hint">Data syncs from the Payload admin.</p>
+          <p className="hero__hint">Syncs directly from Payload collections every 5 minutes.</p>
         </div>
       </section>
 
       <section className="features">
         <article>
-          <h3>Shared boards</h3>
-          <p>Assign every barter request to a clear owner and stay aligned without pings.</p>
+          <h3>Shared vaults</h3>
+          <p>Tag, rank, and lend every box—from grails to prototypes—without juggling sheets.</p>
         </article>
         <article>
-          <h3>Smart reminders</h3>
-          <p>Automatic nudges keep suppliers on track and customers in the loop.</p>
+          <h3>Matchmaking radar</h3>
+          <p>Alert the right players when a barter partner logs a wanted title or variant.</p>
         </article>
         <article>
-          <h3>Audit-ready</h3>
-          <p>Every change is stored in Payload, so finance can export the truth anytime.</p>
+          <h3>Locale ready</h3>
+          <p>Track notes en français or in English so every club host stays in the loop.</p>
         </article>
       </section>
     </main>

@@ -21,6 +21,20 @@ export default buildConfig({
   },
   collections: [Users, Media],
   editor: lexicalEditor(),
+  localization: {
+    defaultLocale: 'fr',
+    fallback: true,
+    locales: [
+      {
+        label: 'English',
+        code: 'en',
+      },
+      {
+        label: 'Francais',
+        code: 'fr',
+      },
+    ],
+  },
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
