@@ -80,14 +80,11 @@ export async function GET(req: NextRequest) {
       throw new Error('Failed to generate local authentication token')
     }
 
-    // Redirect with the local Payload token
     const redirectPath = redirectParam.startsWith('/') ? redirectParam : DEFAULT_REDIRECT_PATH
-    const baseUrl = process.env.WEBSITE_URL || `${req.nextUrl.protocol}//${req.nextUrl.host}`
-    const redirectUrl = new URL(redirectPath, baseUrl)
+    const redirectUrl = new URL(redirectPath, process.env.WEBSITE_URL)
 
     const response = NextResponse.redirect(redirectUrl.toString())
 
-    // Set the local Payload token as httpOnly cookie
     response.cookies.set(AUTH_COOKIE_NAME, loginResult.token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
