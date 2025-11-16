@@ -17,22 +17,22 @@ export default async function HomePage() {
         </div>
         <div className="nav-actions">
           <Link className="button button--primary" href="/dashboard">
-            Open dashboard
+            Open Dashboard
           </Link>
         </div>
       </header>
 
       <section className="hero">
         <div className="hero__text">
-          <p className="eyebrow">Tabletop trading OS</p>
-          <h1>Curate every game loan, trade, and wish list drop.</h1>
+          <h1>Board Game Collection</h1>
           <p className="lead">
-            Inspired by the BoardGameGeek colors you know, Board &amp; Barter keeps your shelves,
-            swap queues, and delivery routes perfectly in sync for clubs, cafés, and collectors.
+            Master your tabletop empire with BoardGameGeek-inspired tracking. Manage loans, trades,
+            and wishlists like a true guild leader. Your quest for the perfect collection starts
+            here.
           </p>
         </div>
         <div className="hero__card">
-          <p className="hero__card-label">Guild signals</p>
+          <p className="hero__card-label">GUILD SIGNALS</p>
           <div className="hero__stat">
             <p>Games catalogued</p>
             <strong>642</strong>
@@ -45,22 +45,31 @@ export default async function HomePage() {
             <p>Avg. turnaround</p>
             <strong>2.1 days</strong>
           </div>
-          <p className="hero__hint">Syncs directly from Payload collections every 5 minutes.</p>
+          <p className="hero__hint">Syncs from Payload collections every 5 minutes.</p>
         </div>
       </section>
 
       <section className="features">
         <article>
-          <h3>Shared vaults</h3>
-          <p>Tag, rank, and lend every box—from grails to prototypes—without juggling sheets.</p>
+          <h3>Shared Vaults</h3>
+          <p>
+            Tag, rank, and lend every box—from grails to prototypes. Your collection, organized like
+            an RPG inventory.
+          </p>
         </article>
         <article>
-          <h3>Matchmaking radar</h3>
-          <p>Alert the right players when a barter partner logs a wanted title or variant.</p>
+          <h3>Matchmaking Radar</h3>
+          <p>
+            Auto-alert when a barter partner logs a wanted title. Never miss a legendary trade
+            opportunity.
+          </p>
         </article>
         <article>
-          <h3>Locale ready</h3>
-          <p>Track notes en français or in English so every club host stays in the loop.</p>
+          <h3>Locale Ready</h3>
+          <p>
+            Track notes en français or in English. Multi-language support for your international
+            gaming guild.
+          </p>
         </article>
       </section>
     </main>
